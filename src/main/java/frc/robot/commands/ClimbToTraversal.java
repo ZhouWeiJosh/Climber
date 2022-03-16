@@ -14,22 +14,24 @@ import frc.robot.subsystems.Climber;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ClimbToTraversal extends SequentialCommandGroup {
   /** Creates a new ClimbToTraversal. */
-  public ClimbToTraversal(Climber s_climber, Joystick joystick) {
+  public ClimbToTraversal(Climber s_climber) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new MidLift(s_climber),
-      new WaitUntilCommand(s_climber::getMidClawEngaged),
-      new MidGrab(s_climber),
-      new WaitUntilCommand(s_climber::getJoystickButton),
+      new MidWinchPiston(s_climber),
+      //new WaitUntilCommand(s_climber::getMidClawEngaged),
+      new MidClawGrab(s_climber),
+      new WaitUntilCommand(s_climber::getCheckCountTrue),
       new MidLockWinch(s_climber),
-      new WaitUntilCommand(s_climber::getJoystickButton),
+      new WaitUntilCommand(s_climber::getCheckCountFalse),
       new MidPull(s_climber),
-      new WaitUntilCommand(s_climber::getJoystickButton),
-      new TraverseLift(s_climber),
+      new WaitUntilCommand(s_climber::getCheckCountTrue),
+      new Pitch(s_climber),
+      new WaitUntilCommand(s_climber::getCheckCountFalse),
+      new TraverseWinchPiston(s_climber),
       new WaitUntilCommand(s_climber::getTraverseClawEngaged),
-      new TraverseGrab(s_climber),
-      new WaitUntilCommand(s_climber::getJoystickButton),
+      new TraverseClawGrab(s_climber),
+      new WaitUntilCommand(s_climber::getCheckCountTrue),
       new ReleaseMidClaw(s_climber)
     );
   }

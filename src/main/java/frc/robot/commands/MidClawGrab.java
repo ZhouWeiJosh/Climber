@@ -7,23 +7,23 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
 
-public class Pitch extends CommandBase {
-  Climber s_climber;
-  /** Creates a new Pitch. */
-  public Pitch(Climber s_climber) {
+public class MidClawGrab extends CommandBase {
+  Climber s_climber; 
+  /** Creates a new MidClawGrab. */
+  public MidClawGrab(Climber s_climber) {
     this.s_climber = s_climber;
+    addRequirements(s_climber);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    s_climber.pitch();
+    s_climber.midClawGrab();
   }
 
   // Called once the command ends or is interrupted.
