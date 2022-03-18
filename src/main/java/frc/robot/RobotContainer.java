@@ -7,10 +7,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ClimbToTraversal;
+import frc.robot.commands.Climb;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.MidPull;
-import frc.robot.commands.SetCountZero;
+import frc.robot.commands.ResetEncoderValues;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -35,7 +34,6 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    //s_climber.setDefaultCommand(new MidPull(s_climber));
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -48,8 +46,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    joystickButton.whenPressed(new ClimbToTraversal(s_climber));
-    joystickButton2.whenPressed(new SetCountZero(s_climber));
+    joystickButton.whenPressed(new Climb(s_climber));
+    joystickButton2.whenPressed(new ResetEncoderValues(s_climber));
+
   }
 
   /**
