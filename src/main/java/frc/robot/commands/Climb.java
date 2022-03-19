@@ -29,8 +29,6 @@ public class Climb extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // s_climber.incrementCount();  
-    // s_climber.resetBooleans();
     s_climber.climbToTraversal();
   }
 
